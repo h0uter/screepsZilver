@@ -1,0 +1,20 @@
+@startuml
+
+== Initialization ==
+Boundary Game
+Control Controller
+Database Model
+
+Game <- Controller: Monitor()
+Game --> Controller: gameInfo
+
+Controller -> Model: manipulate()
+Model -> View: update()
+== Execution ==
+... agent request...
+actor agent
+View <- agent: getJob()
+View --> agent: job[0]
+View -> Controller: Queue--
+
+@enduml

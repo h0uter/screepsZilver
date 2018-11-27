@@ -1,0 +1,46 @@
+@startuml
+:Room:
+
+:engineer:
+:harvester:
+:miner:
+:transporter:
+
+(Perform Task) as (Task)
+
+Room --> (Population Control)
+Room --> (needed jobs)
+Spawn --> (what to spawn?)
+Tower --> (attack targets)
+Tower --> (heal targets)
+
+
+engineer --> (upgrade)
+engineer --> (construct)
+engineer --> (repair)
+engineer --> (maintain)
+harvester --> (harvest)
+harvester --> (remoteHarvest)
+miner --> (mine)
+transporter --> (transport)
+transporter --> (remoteTransport)
+
+Creep -> (isIdle)
+isIdle -> (getJob)
+(getJob) --> (getTask)
+(getTask) --> (Task)
+
+isIdle -> (Task)
+
+
+
+note right of engineer : Balanced body
+note right of miner : 5W 1M
+note right of harvester : ?? Balanced
+note right of transporter : M&C only
+
+note right of (Task)
+do task until task no longer valid
+end note
+
+@enduml

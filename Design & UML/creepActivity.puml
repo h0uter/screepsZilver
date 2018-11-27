@@ -1,0 +1,11 @@
+@startuml
+(*)  --> "Creep"
+If "**isIdle()**" then
+--> [Yes] "**popJob()** from jobQueue"
+--> "run job strategy \n to obtain task"
+--> "Run task"
+else
+--> [no] "Run task"
+Endif
+-->(*)
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+abstract class Queue {
+Object[] elementData
+pop()
+}
+
+class jobQueue{
+role
+}
+
+jobQueue <|-- Queue
+spawnQueue <|-- Queue
+repairQueue <|-- Queue
+constructionQueue <|-- Queue
+
+
+
+
+
+
+@enduml
