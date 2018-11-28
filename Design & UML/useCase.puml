@@ -1,4 +1,5 @@
 @startuml
+' ---ENTITIES---
 :Room:
 
 :engineer:
@@ -8,6 +9,7 @@
 
 (Perform Task) as (Task)
 
+' ---AGENTS---
 Room --> (Population Control)
 Room --> (needed jobs)
 Spawn --> (what to spawn?)
@@ -27,8 +29,9 @@ transporter --> (remoteTransport)
 
 Creep -> (isIdle)
 isIdle -> (getJob)
-(getJob) --> (getTask)
-(getTask) --> (Task)
+(getJob) --> (getTarget)
+(getTarget) --> (Task.target)
+(Task.target) --> (Task)
 
 isIdle -> (Task)
 
@@ -39,8 +42,9 @@ note right of miner : 5W 1M
 note right of harvester : ?? Balanced
 note right of transporter : M&C only
 
-note right of (Task)
-do task until task no longer valid
+note left of (Task)
+do task until task
+no longer valid
 end note
 
 @enduml

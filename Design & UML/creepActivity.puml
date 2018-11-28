@@ -2,7 +2,8 @@
 (*)  --> "Creep"
 If "**isIdle()**" then
 --> [Yes] "**popJob()** from jobQueue"
---> "run job strategy \n to obtain task"
+--> "run job strategy \n to obtain target"
+--> "**Tasks.task(target)**"
 --> "Run task"
 else
 --> [no] "Run task"

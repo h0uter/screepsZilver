@@ -1,20 +1,30 @@
 @startuml
+title MVC sequence each tick
 
-== Initialization ==
-Boundary Game
-Control Controller
-Database Model
+  Boundary Game
+  Control Controller
+  Database Model
 
-Game <- Controller: Monitor()
-Game --> Controller: gameInfo
+group Initialization
+    Game <- Controller: read()
+    Game --> Controller: gameInfo
+    Controller -> Model: initialize()
+end
 
-Controller -> Model: manipulate()
-Model -> View: update()
-== Execution ==
-... agent request...
-actor agent
-View <- agent: getJob()
-View --> agent: job[0]
-View -> Controller: Queue--
+group Game loop
+  == start of tick ==
+  Game <- Controller: Monitor()
+  Game --> Controller: gameInfo
+  Controller -> Model: manipulate()
+  Model -> View: update()
 
+  == during tick ==
+  ... agent request...
+  actor agent
+  View <- agent: getJob()
+  View --> agent: job[0]
+  View -> Controller: Queue--
+  ... ...
+  == end of tick ==
+end
 @enduml
