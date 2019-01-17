@@ -23,13 +23,14 @@ dataBase Model {
     [roomInfo]
     [gameInfo]
   }
+    () jobQueue
+    () spawnQueue
+    () buildQueue
 }
-package View {
-  () jobQueue
-  () spawnQueue
-  () buildQueue
-}
-package Controller {
+
+package Director {
+
+
   [Strategy]
   () agentInput - [Strategy]
 }
@@ -37,19 +38,16 @@ package Controller {
 [main] -- loop
 loop ---> Room : run()
 loop ---> [logger] : run()
-loop ---> Controller: run()
-
-View --> agentInput: agent input
+loop ---> Director: run()
 
 Room --> Creep: run()
 Room --> Structure : run()
 
 [Strategy] --> Model  : update data
-Controller --> View : update view
-Model --> Controller : notify change
+Model --> Director : notify change
 
 ' [logger] ..> Memory : read
 
-jobQueue <.. Creep: getJob()
-spawnQueue <.. Spawn: getSpawnJob()
+agents --> agentInput
+
 @enduml
