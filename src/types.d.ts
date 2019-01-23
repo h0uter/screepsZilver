@@ -19,3 +19,6 @@ declare namespace NodeJS {
   }
 }
 
+interface Room {
+  run() : void;
+}

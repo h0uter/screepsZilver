@@ -5,7 +5,7 @@
  * @export
  * @param {Creep} creep
  */
-export function run(creep: Creep): void {
-
+export default function run(creep: Creep): void {
+    creep.say('yo whaddup')
 
 }
