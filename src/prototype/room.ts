@@ -1,5 +1,3 @@
-
-
 Object.assign(Room.prototype, {
   run() {
     console.log('yeehav')
