@@ -2,12 +2,19 @@
 
 // memory extension samples
 interface CreepMemory {
+  home: string;
   role: string;
   // room: string;
   // working: boolean;
-  // full: boolean;
-  // job: boolean;
-  // home: string;
+  full: boolean;
+  job: string;
+
+}
+
+interface Creep {
+  identifyJob() : void;
+  harvestSource() : void;
+  fullState() : void;
 }
 
 interface Memory {

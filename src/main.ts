@@ -1,10 +1,13 @@
+import Tasks from 'creep-tasks';
 
 import director from "./director";
+import './utils/functions';
+
 import './prototype/room';
+import './prototype/spawn';
 
 
 import { ErrorMapper } from "utils/ErrorMapper";
-
 
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
