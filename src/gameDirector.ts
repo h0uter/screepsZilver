@@ -1,4 +1,4 @@
-import './prototype/room';
+// import './prototype/room';
 
 export default {
    run() : void {

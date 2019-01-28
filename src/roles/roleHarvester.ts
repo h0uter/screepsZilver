@@ -1,4 +1,5 @@
 import Tasks from 'creep-tasks'
+
 /**
  * Runs all creep actions.
  *
@@ -6,23 +7,26 @@ import Tasks from 'creep-tasks'
  * @param {Creep} creep
  */
 export function run(creep: Creep): void {
-  creep.say('yo whaddup')
+  creep.say('yo whaddup');
+  creep.identifyJob();
+  creep.fullState();
 
-  let targets = creep.room.find(FIND_MY_STRUCTURES, {
-    filter: (s) => {
-      return (
-        ((s.structureType === STRUCTURE_SPAWN || s.structureType === STRUCTURE_EXTENSION || s.structureType === STRUCTURE_TOWER)
-          && s.energy < s.energyCapacity)
-        || (s.structureType === STRUCTURE_STORAGE && s.storeCapacity > s.store.energy)
+  if (creep.isIdle) {
+    if (creep.memory.full) {
 
-      );
-    }
-  });
-  if (targets.length) {
-    if (targets.length) {
-      // targets = assignPriority(targets, 'tower', 'extension', 'spawn', 'storage');
-      // targets = prioritizeType(targets);
-      creep.task = Tasks.transfer(creep.pos.findClosestByPath(targets));
+      const targets = creep.room.find(FIND_MY_SPAWNS);
+      if (targets.length) {
+        const target = creep.pos.findClosestByPath(targets);
+        if (target) {
+          creep.task = Tasks.transfer(target);
+          creep.memory.job = 'jobHaul';
+        }
+      }
+    } else {
+      creep.memory.job = 'jobHarvest';
+      creep.harvestSource()
     }
   }
+
+  creep.run()
 }

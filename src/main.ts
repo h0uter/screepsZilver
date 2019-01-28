@@ -1,11 +1,11 @@
-import Tasks from 'creep-tasks';
+// import 'creep-tasks';
 
-import director from "./director";
+import director from "./gameDirector";
 import './utils/functions';
 
+import './prototype/creep';
 import './prototype/room';
 import './prototype/spawn';
-
 
 import { ErrorMapper } from "utils/ErrorMapper";
 

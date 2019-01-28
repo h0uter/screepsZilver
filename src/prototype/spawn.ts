@@ -24,9 +24,10 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
 
   return this.spawnCreep(body, newName, {
     memory: {
+      full: false,
       home: this.room.name,
       role,
-
+      task: null,
     }
   })
 };

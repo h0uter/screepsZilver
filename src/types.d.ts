@@ -1,13 +1,14 @@
 // example declaration file - remove these and add your own custom typings
 
 // memory extension samples
+
 interface CreepMemory {
   home: string;
   role: string;
   // room: string;
   // working: boolean;
   full: boolean;
-  job: string;
+  job?: string;
 
 }
 
@@ -15,6 +16,7 @@ interface Creep {
   identifyJob() : void;
   harvestSource() : void;
   fullState() : void;
+  // task: ITask | null;
 }
 
 interface Memory {

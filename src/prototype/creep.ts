@@ -1,20 +1,26 @@
-
+import Tasks from 'creep-tasks'
 
 Creep.prototype.identifyJob =
   function () {
     if (Game.time % 5 === 0) {
-      let idSymbol: string;
+      let idSymbol: string = 'default';
       const idSymbols: any = {
         jobConstruct () {idSymbol = '🔨'},
         jobHarvest () {idSymbol = '🌾'},
-        haul () {idSymbol = '🚛'},
+        jobHaul () {idSymbol = '🚛'},
         mine () {idSymbol = '⛏'},
         jobMaintenance () {idSymbol = '🔧'},
         jobUpgrade () {idSymbol = '⚡'},
         jobFortify () {idSymbol = '🛡'},
         default () {idSymbol = '**'}
       };
-      (idSymbols[this.memory.job] || idSymbols.default())();
+      if (typeof this.memory.job === "string") {
+        idSymbols[this.memory.job]();
+      } else {
+        idSymbols.default()
+      }
+      // not allowed anymore in ts :(
+      // (idSymbols[this.memory.job] || idSymbols.default())();
       this.say('job: ' + idSymbol)
     }
   };
@@ -28,7 +34,7 @@ Creep.prototype.fullState =
     }
     if (!this.memory.full && this.carry.energy === this.carryCapacity) {
       this.memory.full = true;
-      this.memory.job = false;
+      delete this.memory.job;
       // this.clearTargets();
       this.say('💯');
     }
