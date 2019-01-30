@@ -1,5 +1,5 @@
 import * as roleHarvester from '../roles/roleHarvester'
-
+import * as roleUpgrader from '../roles/roleUpgrader'
 // function lg(text: any) : void {
 //   console.log(text);
 // }
@@ -14,7 +14,11 @@ Object.assign(Room.prototype, {
       const creep = Game.creeps[name];
 
       if (creep.room === this) {
-        roleHarvester.run(creep);
+        if (creep.memory.role === 'harvester') {
+          roleHarvester.run(creep);
+        } else if  (creep.memory.role === 'upgrader') {
+          roleUpgrader.run(creep);
+        }
       }
     });
 

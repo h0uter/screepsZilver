@@ -9,10 +9,14 @@
 // });
 
 StructureSpawn.prototype.run = function () {
+  let harvesters = _.filter(Game.creeps, (creep) => (creep.memory.role === 'harvester'));
+  let upgraders = _.filter(Game.creeps, (creep) => (creep.memory.role === 'upgrader'));
 
-  if (_.filter(Game.creeps, (creep) => (creep.memory.home === this.room.name)).length <= 1) {
-    console.log('bijna uitgestorven');
+
+  if (harvesters.length <= 2) {
     this.buildCreep('harvester')
+  } else if (upgraders.length <= 2 ) {
+    this.buildCreep('upgrader')
   }
 };
 
