@@ -1,8 +1,9 @@
 // import './prototype/room';
+import './utils/functions';
 
 export default {
    run() : void {
-    console.log("director running");
+    lg("director running");
 
      Object.keys(Game.rooms).forEach(roomName => {
        Game.rooms[roomName].run();

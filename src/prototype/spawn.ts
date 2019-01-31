@@ -15,7 +15,7 @@ StructureSpawn.prototype.run = function () {
 
   if (harvesters.length <= 2) {
     this.buildCreep('harvester')
-  } else if (upgraders.length <= 2 ) {
+  } else if (upgraders.length <= 3 ) {
     this.buildCreep('upgrader')
   }
 };

@@ -31,4 +31,3 @@ Object.assign(Room.prototype, {
   },
 });
 
-

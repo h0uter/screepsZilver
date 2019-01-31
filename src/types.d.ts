@@ -3,6 +3,7 @@
 // memory extension samples
 
 interface CreepMemory {
+  [key:string]: any;
   home: string;
   role: string;
   // room: string;
@@ -33,6 +34,7 @@ declare namespace NodeJS {
 
 interface Room {
   run() : void;
+  howManyOfEach() : object;
 }
 
 interface StructureSpawn {
@@ -40,3 +42,6 @@ interface StructureSpawn {
   buildCreep(role: string) : ScreepsReturnCode;
 }
 
+//declare function lg(text: any) : void;
+
+declare var lg: (text: string) => void; // or whatever
