@@ -1,5 +1,7 @@
 // example declaration file - remove these and add your own custom typings
 
+
+
 // memory extension samples
 
 interface CreepMemory {
@@ -25,12 +27,7 @@ interface Memory {
   log: any;
 }
 
-// `global` extension samples
-declare namespace NodeJS {
-  interface Global {
-    log: any;
-  }
-}
+
 
 interface Room {
   run() : void;
@@ -42,6 +39,17 @@ interface StructureSpawn {
   buildCreep(role: string) : ScreepsReturnCode;
 }
 
-//declare function lg(text: any) : void;
+// `global` extension samples
+type MyGlobalFunctionType = (name: string) => void;
 
-declare var lg: (text: string) => void; // or whatever
+
+declare namespace NodeJS {
+  interface Global {
+    log: any;
+    lg: MyGlobalFunctionType;
+  }
+}
+
+// declare const lg: MyGlobalFunctionType;
+// declare function lg(name: string): MyGlobalFunctionType;
+declare function lg(text: string): MyGlobalFunctionType;

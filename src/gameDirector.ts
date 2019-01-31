@@ -3,7 +3,7 @@ import './utils/functions';
 
 export default {
    run() : void {
-    lg("director running");
+    lg("director running, huts");
 
      Object.keys(Game.rooms).forEach(roomName => {
        Game.rooms[roomName].run();
