@@ -1,6 +1,6 @@
 // import 'creep-tasks';
 
-import director from "./gameDirector";
+import gameDirector from "./gameDirector";
 import './utils/functions';
 
 import './prototype/creep';
@@ -15,8 +15,7 @@ import { ErrorMapper } from "utils/ErrorMapper";
 export const loop = ErrorMapper.wrapLoop(() => {
   console.log(`Current game tick is ${Game.time}`);
 
-  director.run();
-
+  gameDirector.run();
 
   // Automatically delete memory of missing creeps
   for (const name in Memory.creeps) {

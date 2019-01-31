@@ -1,8 +1,16 @@
 // example declaration file - remove these and add your own custom typings
 
-
-
 // memory extension samples
+
+// contains al information for director to perform
+interface Model {
+  creeps: object;
+  RCL: number;
+  constructionSites: object;
+  roleList: object;
+  jobList: object;
+}
+
 
 interface CreepMemory {
   [key:string]: any;
@@ -40,7 +48,7 @@ interface StructureSpawn {
 }
 
 // `global` extension samples
-type MyGlobalFunctionType = (name: string) => void;
+type MyGlobalFunctionType = (name: any) => void;
 
 
 declare namespace NodeJS {
