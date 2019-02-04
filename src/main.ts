@@ -1,4 +1,6 @@
 // import 'creep-tasks';
+import './utils/functions';
+import './utils/global';
 
 import gameDirector from "./gameDirector";
 import './utils/functions';

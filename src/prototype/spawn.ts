@@ -9,14 +9,17 @@
 // });
 
 StructureSpawn.prototype.run = function () {
-  let harvesters = _.filter(Game.creeps, (creep) => (creep.memory.role === 'harvester'));
-  let upgraders = _.filter(Game.creeps, (creep) => (creep.memory.role === 'upgrader'));
+  const harvesters = _.filter(Game.creeps, (creep) => (creep.memory.role === 'harvester'));
+  const upgraders = _.filter(Game.creeps, (creep) => (creep.memory.role === 'upgrader'));
+  const engineers = _.filter(Game.creeps, (creep) => (creep.memory.role === 'engineer'));
 
 
   if (harvesters.length <= 2) {
     this.buildCreep('harvester')
-  } else if (upgraders.length <= 3 ) {
+  } else if (upgraders.length <= 1 ) {
     this.buildCreep('upgrader')
+  } else if (engineers.length <= 4 ) {
+    this.buildCreep('engineer')
   }
 };
 
