@@ -6,7 +6,6 @@ import Tasks from 'creep-tasks'
  * @param {Creep} creep
  */
 export function run(creep: Creep): void {
-  creep.say('yo Im an upgrader');
   creep.identifyJob();
   creep.fullState();
 

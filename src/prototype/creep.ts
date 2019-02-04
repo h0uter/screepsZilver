@@ -1,4 +1,5 @@
 import Tasks from 'creep-tasks'
+import Roles from '../utils/Roles'
 
 Creep.prototype.identifyJob =
   function () {
@@ -41,9 +42,23 @@ Creep.prototype.fullState =
   };
 
 Creep.prototype.harvestSource = function () {
+  this.memory.job = 'jobHarvest';
   const sources = this.room.find(FIND_SOURCES);
   // lg('before: ' + sources);
   sources.sort((a, b) => a.targetedBy.length - b.targetedBy.length);
   // lg('after: ' +sources);
   this.task = Tasks.harvest(sources[0]);
+};
+
+Creep.prototype.assignJob = function (job) {
+  this.memory.job = job;
+  // this.room.memory.jobList[job]++
+};
+
+Creep.prototype.executeJobLogic = function () {
+  // lg('heyyeye'+Roles[this.memory.role][this.memory.job](this));
+  if (this.memory.job){
+    Roles[this.memory.role][this.memory.job](this);
+  }
+
 };
