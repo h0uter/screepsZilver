@@ -35,7 +35,7 @@ interface Memory {
   log: any;
 }
 
-interface Lijst {
+interface KeyNumberObject {
   [key:string]: number;
 }
 

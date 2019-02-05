@@ -1,9 +1,16 @@
+import roomDirector from "./roomDirector";
+
 export default {
    run() : void {
-    lg("director running, huts");
+    lg("Gdirector running, huts");
+
+
 
      Object.keys(Game.rooms).forEach(roomName => {
-       Game.rooms[roomName].run();
+
+       Game.rooms[roomName].monitor();
+
+       roomDirector.run(Game.rooms[roomName]);
      });
   },
 
