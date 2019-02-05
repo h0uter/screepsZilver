@@ -8,6 +8,7 @@ Creep.prototype.identifyJob =
       const idSymbols: any = {
         jobConstruct () {idSymbol = '🔨'},
         jobHarvest () {idSymbol = '🌾'},
+        jobRestock () {idSymbol = '🚛🌾🚛'},
         jobHaul () {idSymbol = '🚛'},
         mine () {idSymbol = '⛏'},
         jobMaintenance () {idSymbol = '🔧'},

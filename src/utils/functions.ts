@@ -7,8 +7,7 @@
  * @param {string} vier
  * @param {string} vijf
  */
-
-export function assignPriority(targets: ConstructionSite[], een: string, twee: string, drie='', vier='', vijf=''): ConstructionSite[] {
+export function assignPriority(targets: any[], een: string, twee: string, drie='', vier='', vijf=''): any[] {
   for (let i = 0; i < targets.length; i++) {
     switch (targets[i].structureType) {
       case een:
@@ -38,7 +37,7 @@ export function assignPriority(targets: ConstructionSite[], een: string, twee: s
 /** @function
  * @param {object} targets
  */
-export function prioritizeType(targets: ConstructionSite[]): ConstructionSite[] {
+export function prioritizeType(targets: any[]) {
   targets.sort((a, b) => a.priority - b.priority);
   // FIND CLOSEST INSTANCE OF HIGHEST PRIORITY STRUCTURETYPE (vaag als targets maar 1 object heeft)
   targets = _.filter(targets, (t) => t.structureType === targets[0].structureType);

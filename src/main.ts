@@ -5,7 +5,7 @@ import './utils/global';
 import gameDirector from "./gameDirector";
 import './utils/functions';
 
-import './prototype/creep';
+import './prototype/Creep';
 import './prototype/room';
 import './prototype/spawn';
 

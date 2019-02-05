@@ -10,7 +10,7 @@ import * as Arithmetic from '../utils/functions'
 export function run(creep: Creep): void {
   // creep.memory.job = 'upgrade';
   creep.fullState();
-  creep.say('yo Im an engineer');
+  // creep.say('yo Im an engineer');
 
 
   if (creep.isIdle) {

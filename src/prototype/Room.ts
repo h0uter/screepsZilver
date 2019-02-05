@@ -14,16 +14,25 @@ Room.prototype.howManyOfEach = function(key: string) : object {
   return list
 };
 
+Room.prototype.getRCL = function() {
+  if (this.controller && this.controller.my) {
+    return this.controller.level
+  } else {
+    return 0
+  }
+};
+
 Room.prototype.monitor = function () {
   //INFO
   // TODO job targets: repair, jobConstruct
 
-  // Memory.rooms[this.name] = {
   this.memory = {
     // creeps: this.roomCreeps(),
-    // RCL: this.getRCL(),
+    RCL: this.getRCL(),
     constructionSites: this.find(FIND_CONSTRUCTION_SITES),
     roleList: this.howManyOfEach('role'),
     jobList: this.howManyOfEach('job'),
-  }
+    roomEnergyPercentage: _.floor(this.energyAvailable / this.energyCapacityAvailable,2),
+
+}
 };

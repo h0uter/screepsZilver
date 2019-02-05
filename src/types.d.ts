@@ -3,31 +3,9 @@
 // memory extension samples
 
 // contains al information for director to perform
-interface Model {
-  creeps: object;
-  RCL: number;
-  constructionSites: object;
-  roleList: object;
-  jobList: object;
-}
-
-interface CreepMemory {
-  [key:string]: any;
-  home: string;
-  role: string;
-  // room: string;
-  // working: boolean;
-  full: boolean;
-  job?: string;
-
-}
 
 interface Roles {
   [key:string]: any;
-}
-
-interface ConstructionSite {
-  priority: number;
 }
 
 interface Memory {

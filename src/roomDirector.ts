@@ -3,7 +3,7 @@ import * as roleEngineer from "./roles/roleEngineer";
 
 export default {
   run(room: Room): void {
-    lg("Rdirector running, huts");
+    // lg("Rdirector running, huts");
 
     Object.keys(Game.creeps).forEach(name => {
       const creep = Game.creeps[name];
@@ -20,7 +20,7 @@ export default {
     Object.keys(Game.spawns).forEach(name => {
       if (Game.spawns[name].room.name === room.name) {
         const populationSetting: KeyNumberObject = {
-          engineer: 3,
+          engineer: 4,
           harvester: 3,
           miner: 0,
         };
