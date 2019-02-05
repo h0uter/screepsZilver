@@ -13,7 +13,7 @@ export function run(creep: Creep): void {
 
   if (creep.isIdle) {
     if (creep.memory.full) {
-      creep.assignJob('jobRestock')
+      creep.assignJob('jobRestock');
       if (!!creep.memory.job) {
         creep.executeJobLogic()
       }

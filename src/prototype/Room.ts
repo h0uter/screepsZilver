@@ -32,7 +32,7 @@ Room.prototype.monitor = function () {
     constructionSites: this.find(FIND_CONSTRUCTION_SITES),
     roleList: this.howManyOfEach('role'),
     jobList: this.howManyOfEach('job'),
-    roomEnergyPercentage: _.floor(this.energyAvailable / this.energyCapacityAvailable,2),
+    roomEnergyPercentage: _.round(this.energyAvailable / this.energyCapacityAvailable,2),
 
 }
 };

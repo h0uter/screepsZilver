@@ -6,8 +6,8 @@ import gameDirector from "./gameDirector";
 import './utils/functions';
 
 import './prototype/Creep';
-import './prototype/room';
-import './prototype/spawn';
+import './prototype/Room';
+import './prototype/structureSpawn';
 
 import { ErrorMapper } from "utils/ErrorMapper";
 
