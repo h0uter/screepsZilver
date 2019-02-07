@@ -42,8 +42,6 @@ export function jobUpgrade(creep: Creep): void {
   }
 }
 
-
-
 export function jobConstruct(creep: Creep): void {
   let targets: ConstructionSite[] = creep.room.find(FIND_CONSTRUCTION_SITES);
   if (targets.length) {
