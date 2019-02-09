@@ -18,9 +18,10 @@ export function run(creep: Creep): void {
       // JOB assignment from room info
       let jobList = creep.room.memory.jobList;
 
-      if (!jobList.jobConstruct || jobList.jobConstruct < 1) {
+      if ((!jobList.jobConstruct || jobList.jobConstruct < 2) && creep.room.memory.constructionSites.length > 0)  {
         creep.assignJob('jobConstruct');
-      } else if (!jobList.jobUpgrade || jobList.jobUpgrade < 2) {
+      // } else if (!jobList.jobUpgrade || jobList.jobUpgrade < 2) {
+      } else {
         creep.assignJob('jobUpgrade');
       }
 
@@ -44,6 +45,7 @@ export function jobUpgrade(creep: Creep): void {
 
 export function jobConstruct(creep: Creep): void {
   let targets: ConstructionSite[] = creep.room.find(FIND_CONSTRUCTION_SITES);
+  lg('construct targets: ' + targets.length);
   if (targets.length) {
 
     // TODO combine into 1 function that takes care of priority
@@ -60,5 +62,7 @@ export function jobConstruct(creep: Creep): void {
     if (target) {
       creep.task = Tasks.build(target)
     }
+  } else {
+    delete creep.memory.job
   }
 }
