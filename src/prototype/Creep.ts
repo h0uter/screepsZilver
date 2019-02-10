@@ -56,6 +56,9 @@ Creep.prototype.assignJob = function (job) {
   // this.room.memory.jobList[job]++
 };
 
+
+// TODO execute joblogic from folder
+
 Creep.prototype.executeJobLogic = function () {
   // lg('heyyeye'+Roles[this.memory.role][this.memory.job](this));
   if (this.memory.job){
