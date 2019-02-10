@@ -16,7 +16,7 @@ export function run(creep: Creep): void {
   if (creep.isIdle) {
     if (creep.memory.full) {
       // JOB assignment from room info
-      let jobList = creep.room.memory.jobList;
+      const jobList = creep.room.memory.jobList;
 
       if ((!jobList.jobConstruct || jobList.jobConstruct < 2) && creep.room.memory.constructionSites.length > 0)  {
         creep.assignJob('jobConstruct');

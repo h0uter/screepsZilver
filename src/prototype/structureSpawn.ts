@@ -33,6 +33,7 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
     for (let i = 0; i < moveParts; i++) {body.push(MOVE)}
   }
 
+  lg('spawning: ' + newName + ' with body: ' + body)
   return this.spawnCreep(body, newName, {
     memory: {
       full: false,
@@ -42,3 +43,9 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
     }
   })
 };
+
+// function bodyCost (body: BodyPartConstant[]) {
+//   return body.reduce(function (cost, part) {
+//       return cost + BODYPART_COST[part];
+//   }, 0);
+// }
