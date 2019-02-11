@@ -1,5 +1,5 @@
 import Tasks from 'creep-tasks'
-import Roles from '../utils/Roles'
+import { Jobs }  from '../utils/creepConfig'
 
 Creep.prototype.identifyJob =
   function () {
@@ -10,7 +10,7 @@ Creep.prototype.identifyJob =
         jobHarvest () {idSymbol = '🌾'},
         jobRestock () {idSymbol = '🚛🌾🚛'},
         jobHaul () {idSymbol = '🚛'},
-        mine () {idSymbol = '⛏'},
+        jobMine () {idSymbol = '⛏'},
         jobMaintenance () {idSymbol = '🔧'},
         jobUpgrade () {idSymbol = '⚡'},
         jobFortify () {idSymbol = '🛡'},
@@ -56,13 +56,12 @@ Creep.prototype.assignJob = function (job) {
   // this.room.memory.jobList[job]++
 };
 
+// TODO: execute joblogic from folder
 
-// TODO execute joblogic from folder
-
-Creep.prototype.executeJobLogic = function () {
+Creep.prototype.executeJobLogic = function ( ) {
   // lg('heyyeye'+Roles[this.memory.role][this.memory.job](this));
   if (this.memory.job){
-    Roles[this.memory.role][this.memory.job](this);
+    // Roles[this.memory.role][this.memory.job](this);
+    Jobs[this.memory.job](this);
   }
-
 };

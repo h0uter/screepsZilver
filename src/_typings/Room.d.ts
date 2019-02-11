@@ -1,12 +1,12 @@
 interface Room {
   howManyOfEach(key: string) : object;
-  monitor() : void;
+  updateRoomModel() : void;
   getRCL() : number;
 }
 
 interface RoomMemory {
-  roleList:any;
-  jobList: any;
+  rolesInRoom:any;
+  jobsInRoom: any;
   constructionSites: ConstructionSite[];
   RCL: number;
   roomEnergyPercentage: number;

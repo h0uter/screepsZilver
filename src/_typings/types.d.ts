@@ -1,4 +1,4 @@
-interface Roles {
+interface keyAnyObject {
   [key:string]: any;
 }
 

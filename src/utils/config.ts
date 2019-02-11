@@ -1,7 +1,7 @@
 module.exports = {
   populationSetting: {
-    harvester: 3,
     engineer: 6,
+    harvester: 3,
     miner: 0,
   },
   spawnList: {

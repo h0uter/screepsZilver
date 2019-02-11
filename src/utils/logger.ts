@@ -6,7 +6,7 @@ export function run(): void {
     console.log('>>Energy in room ' + roomName + ': ' + room.energyAvailable + "/" + room.energyCapacityAvailable);
 
     let roleListLog = '';
-    const roleList = Memory.rooms[roomName].roleList;
+    const roleList = Memory.rooms[roomName].rolesInRoom;
     // TODO also roleListLog active jobs with #
     for (const rol in roleList) {
       roleListLog += rol + 's: ' + roleList[rol] + ' | ';
@@ -14,7 +14,7 @@ export function run(): void {
     console.log('>>Pops: ' + roleListLog);
 
     let jobListLog = '';
-    const jobList = Memory.rooms[roomName].jobList;
+    const jobList = Memory.rooms[roomName].jobsInRoom;
     _.forIn(jobList, (value, key) => {
       jobListLog += key + ': ' + value + ' | ';
     });

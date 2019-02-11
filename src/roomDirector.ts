@@ -5,6 +5,8 @@ export default {
   run(room: Room): void {
     // lg("Rdirector running, huts");
 
+    room.updateRoomModel();
+
     Object.keys(Game.creeps).forEach(name => {
       const creep = Game.creeps[name];
 
@@ -28,9 +30,9 @@ export default {
 
         // Object.keys(room.memory.roleList).forEach(role => {
         Object.keys(populationSetting).forEach(role => {
-          lg(role + ': ' + room.memory.roleList[role]);
+          lg(role + ': ' + room.memory.rolesInRoom[role]);
 
-          const populationCount = room.memory.roleList[role] || 0;
+          const populationCount = room.memory.rolesInRoom[role] || 0;
 
           if (populationCount < populationSetting[role]) {
             lg('spawning: ' + role);

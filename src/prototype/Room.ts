@@ -1,7 +1,7 @@
 Room.prototype.howManyOfEach = function(key: string) : object {
   // counts the occurance of the specified key in creep memory per room
   // getJobs en get Population zijn het zelfde
-  // TODO mooie lodash oplossing hiervoor vinden
+  // TODO: mooie lodash oplossing hiervoor vinden
   const list: KeyNumberObject = {};
   for (const name in Game.creeps) {
     const creep = Game.creeps[name];
@@ -22,17 +22,16 @@ Room.prototype.getRCL = function() {
   }
 };
 
-Room.prototype.monitor = function () {
-  //INFO
-  // TODO job targets: repair, jobConstruct
+Room.prototype.updateRoomModel = function () {
+
+  // TODO: job targets: repair, jobConstruct
 
   this.memory = {
     // creeps: this.roomCreeps(),
     RCL: this.getRCL(),
     constructionSites: this.find(FIND_CONSTRUCTION_SITES),
-    roleList: this.howManyOfEach('role'),
-    jobList: this.howManyOfEach('job'),
+    jobsInRoom: this.howManyOfEach('job'),
+    rolesInRoom: this.howManyOfEach('role'),
     roomEnergyPercentage: _.round(this.energyAvailable / this.energyCapacityAvailable,2),
-
 }
 };

@@ -3,12 +3,12 @@ import roomDirector from "./roomDirector";
 export default {
    run() : void {
     // lg("Gdirector running, huts");
-     Object.keys(Game.rooms).forEach(roomName => {
+    Memory.gameModel = {}
+    Memory.gameModel.numberOfRooms = Object.keys(Game.rooms).length
 
-       Game.rooms[roomName].monitor();
+    Object.keys(Game.rooms).forEach(roomName => {
 
-       roomDirector.run(Game.rooms[roomName]);
-     });
+      roomDirector.run(Game.rooms[roomName]);
+    });
   },
-
 };

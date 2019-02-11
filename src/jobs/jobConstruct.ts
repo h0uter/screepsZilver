@@ -1,9 +1,9 @@
 import Tasks from "creep-tasks";
 import * as Arithmetic from '../utils/functions'
 
-
-export function jobConstuct(creep: Creep): void {
+export default function jobConstruct(creep: Creep): void {
   let targets: ConstructionSite[] = creep.room.find(FIND_CONSTRUCTION_SITES);
+  lg('construct targets: ' + targets.length);
   if (targets.length) {
 
     // TODO combine into 1 function that takes care of priority
@@ -20,5 +20,7 @@ export function jobConstuct(creep: Creep): void {
     if (target) {
       creep.task = Tasks.build(target)
     }
+  } else {
+    delete creep.memory.job
   }
 }
