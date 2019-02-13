@@ -5,14 +5,19 @@ import './utils/global';
 import gameDirector from "./gameDirector";
 import './utils/functions';
 
+// import { prototypeInstall } from './prototype';
+
+// import './prototype';
 import './prototype/Creep';
 import './prototype/Room';
 import './prototype/structureSpawn';
+import './prototype/Tower';
 
 import { ErrorMapper } from "utils/ErrorMapper";
 import * as logger from "./utils/logger"
 
-lg('Fresh Start');
+lg('_____________________Fresh Start____________________________________');
+// prototypeInstall()
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code

@@ -1,10 +1,10 @@
 import * as roleEngineer from "./roles/roleEngineer";
 import * as roleHarvester from "./roles/roleHarvester";
 
+import * as Config from "./utils/Config"
+
 export default {
   run(room: Room): void {
-    // lg("Rdirector running, huts");
-
     room.updateRoomModel();
 
     Object.keys(Game.creeps).forEach(name => {
@@ -21,20 +21,12 @@ export default {
 
     Object.keys(Game.spawns).forEach(name => {
       if (Game.spawns[name].room.name === room.name) {
-        
-        const populationSetting: KeyNumberObject = {
-          engineer: 4,
-          harvester: 3,
-          miner: 0,
-        };
-
-        // Object.keys(room.memory.roleList).forEach(role => {
-        Object.keys(populationSetting).forEach(role => {
-          lg(role + ': ' + room.memory.rolesInRoom[role]);
-
+  
+        Object.keys(Config.populationSetting).forEach(role => {
           const populationCount = room.memory.rolesInRoom[role] || 0;
+          // lg(role + ': ' + populationCount);
 
-          if (populationCount < populationSetting[role]) {
+          if (populationCount < Config.populationSetting[role]) {
             lg('spawning: ' + role);
             Game.spawns[name].buildCreep(role)
           }

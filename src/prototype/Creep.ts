@@ -10,10 +10,10 @@ Creep.prototype.identifyJob =
         jobHarvest () {idSymbol = '🌾'},
         jobRestock () {idSymbol = '🚛🌾🚛'},
         jobHaul () {idSymbol = '🚛'},
-        jobMine () {idSymbol = '⛏'},
-        jobMaintenance () {idSymbol = '🔧'},
+        // jobMine () {idSymbol = '⛏'},
+        // jobMaintenance () {idSymbol = '🔧'},
         jobUpgrade () {idSymbol = '⚡'},
-        jobFortify () {idSymbol = '🛡'},
+        // jobFortify () {idSymbol = '🛡'},
         default () {idSymbol = '**'}
       };
       if (typeof this.memory.job === "string") {
