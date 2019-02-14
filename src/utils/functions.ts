@@ -38,8 +38,9 @@ export function assignPriority(targets: any[], een: string, twee: string, drie='
  * @param {object} targets
  */
 export function prioritizeType(targets: any[]) {
+  // sort targets based on assigned priority
   targets.sort((a, b) => a.priority - b.priority);
-  // FIND CLOSEST INSTANCE OF HIGHEST PRIORITY STRUCTURETYPE (vaag als targets maar 1 object heeft)
+  // reduce to array of only 1 structure type; the one with the highest priority
   targets = _.filter(targets, (t) => t.structureType === targets[0].structureType);
   return targets
 }

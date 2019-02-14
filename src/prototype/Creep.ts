@@ -27,23 +27,22 @@ Creep.prototype.identifyJob =
     }
   };
 
-Creep.prototype.fullState =
-  function () {
-    if (this.memory.full && this.carry.energy === 0) {
-      this.memory.full = false;
-      // this.clearTargets();
-      this.say('🔄');
-    }
-    if (!this.memory.full && this.carry.energy === this.carryCapacity) {
-      this.memory.full = true;
-      delete this.memory.job;
-      // this.clearTargets();
-      this.say('💯');
-    }
-  };
+Creep.prototype.fullState = function () {
+  if (this.memory.full && this.carry.energy === 0) {
+    this.memory.full = false;
+    // this.clearTargets();
+    this.say("🔄");
+  }
+  if (!this.memory.full && this.carry.energy === this.carryCapacity) {
+    this.memory.full = true;
+    delete this.memory.job;
+    // this.clearTargets();
+    this.say("💯");
+  }
+};
 
 Creep.prototype.harvestSource = function () {
-  this.memory.job = 'jobHarvest';
+  this.memory.job = "jobHarvest";
   const sources = this.room.find(FIND_SOURCES);
   // lg('before: ' + sources);
   sources.sort((a, b) => a.targetedBy.length - b.targetedBy.length);
@@ -56,11 +55,9 @@ Creep.prototype.assignJob = function (job) {
   // this.room.memory.jobList[job]++
 };
 
-// TODO: execute joblogic from folder
-
-Creep.prototype.executeJobLogic = function ( ) {
+Creep.prototype.executeJobLogic = function () {
   // lg('heyyeye'+Roles[this.memory.role][this.memory.job](this));
-  if (this.memory.job){
+  if (this.memory.job) {
     // Roles[this.memory.role][this.memory.job](this);
     Jobs[this.memory.job](this);
   }

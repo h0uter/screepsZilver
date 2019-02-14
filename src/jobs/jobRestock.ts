@@ -1,6 +1,7 @@
 import Tasks from 'creep-tasks'
 import * as Arithmetic from '../utils/functions'
 
+// find energy
 export default function jobRestock(creep: Creep): void {
     let targets = creep.room.find(FIND_MY_STRUCTURES, {
       filter: (s) => {

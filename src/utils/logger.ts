@@ -7,7 +7,7 @@ export function run(): void {
 
     let roleListLog = '';
     const roleList = Memory.rooms[roomName].rolesInRoom;
-    // TODO also roleListLog active jobs with #
+
     for (const rol in roleList) {
       roleListLog += rol + 's: ' + roleList[rol] + ' | ';
     }

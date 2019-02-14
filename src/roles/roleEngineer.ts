@@ -3,23 +3,26 @@ export function run(creep: Creep): void {
 
   if (creep.isIdle) {
     if (creep.memory.full) {
-      // JOB assignment from room info
+
+      // TODO: job assignment directed by roomDirector
       const jobList = creep.room.memory.jobsInRoom;
 
-      if ((!jobList.jobConstruct || jobList.jobConstruct < 2) && creep.room.memory.constructionSites.length > 0)  {
-        creep.assignJob('jobConstruct');
-      // } else if (!jobList.jobUpgrade || jobList.jobUpgrade < 2) {
+      if ((!jobList.jobConstruct || jobList.jobConstruct < 2) && creep.room.memory.constructionSites.length > 0) {
+        creep.assignJob("jobConstruct");
       } else {
-        creep.assignJob('jobUpgrade');
+        creep.assignJob("jobUpgrade");
       }
     } else {
-      creep.assignJob('jobHarvest');
+      creep.assignJob("jobHarvest");
     }
 
     if (!!creep.memory.job) {
-      creep.executeJobLogic()
+      creep.executeJobLogic();
     }
   }
+  // identify its job
   creep.identifyJob();
+
+  // run the Task assigned from the job
   creep.run();
 }

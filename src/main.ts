@@ -7,6 +7,7 @@ import './utils/functions';
 
 // import { prototypeInstall } from './prototype';
 
+// TODO: combine into 1 install module
 // import './prototype';
 import './prototype/Creep';
 import './prototype/Room';

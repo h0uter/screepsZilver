@@ -1,23 +1,21 @@
-/**
- * Runs all creep actions.
- * @export
- * @param {Creep} creep
- */
 export function run(creep: Creep): void {
-  // creep.say('yo whaddup');
-  creep.identifyJob();
+  // update full status
   creep.fullState();
 
+  // when the creep is idle assign it to restock when full or to harvest energy when not full, then execute it's job
   if (creep.isIdle) {
     if (creep.memory.full) {
-      creep.assignJob('jobRestock');
+      creep.assignJob("jobRestock");
     } else {
-      // creep.harvestSource()
-      creep.assignJob('jobHarvest');
+      creep.assignJob("jobHarvest");
     }
     if (!!creep.memory.job) {
-      creep.executeJobLogic()
+      creep.executeJobLogic();
     }
   }
-  creep.run()
+  // identify its job
+  creep.identifyJob();
+
+  // run the Task assigned from the job
+  creep.run();
 }
