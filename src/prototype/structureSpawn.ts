@@ -1,3 +1,5 @@
+import { setServers } from "dns";
+
 StructureSpawn.prototype.buildCreep = function (role: string) {
   
   let body: BodyPartConstant[] = [WORK, CARRY, MOVE];
@@ -33,6 +35,11 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
     for (let i = 0; i < moveParts; i++) {body.push(MOVE)}
   }
 
+  // if (role === 'miner') {
+  //   body = this.bodyConstructor([1,0,1], [1,0,0])
+  // }
+
+
   lg('spawning: ' + newName + ' with body: ' + body)
   return this.spawnCreep(body, newName, {
     memory: {
@@ -49,3 +56,60 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
 //       return cost + BODYPART_COST[part];
 //   }, 0);
 // }
+
+
+// standard builds a balanced body
+StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1, 1, 1]) {
+  const body: BodyPartConstant[] = []
+  const WCM_COST = [100, 50, 50];
+
+  const spawnEnergy = this.room.energyAvailable;
+
+  // cost for the base body
+  const baseCostMap = WCM.map((x, index) => { // here x = a[index]
+    return WCM_COST[index] * x 
+  }); 
+  lg('_____baseCostMap= '+ baseCostMap);
+
+  const baseCost = baseCostMap.reduce((totalCost, bodypartCost) => totalCost + bodypartCost)
+  lg('_____baseCost= '+ baseCost);
+
+  // cost to add a set of the scaling body parts
+  const scaleSetCostMap = scaling.map((x, index) => { // here x = a[index]
+    return WCM_COST[index] * x 
+  }); 
+  lg('_____scaleSetCostMap= '+ scaleSetCostMap);
+
+  const scaledSetCost = scaleSetCostMap.reduce((totalCost, bodypartCost) => totalCost + bodypartCost)
+  lg('_____scaledSetCost= '+ scaledSetCost);
+
+  // number of scaled sets possible based on room energy
+  const numberOfScaledSets = _.floor((spawnEnergy - baseCost) / scaledSetCost);
+  _lg('scaled sets possible= ' + numberOfScaledSets)
+
+
+  // cost of base body + n scaledSets
+  const totalScaledBodyCost = baseCost + numberOfScaledSets * scaledSetCost
+  _lg('totalScaledBodyCost= ' + totalScaledBodyCost)
+  // const numberOfSets = _.floor(spawnEnergy/baseCost);
+  // lg('_____numberOfSets= '+ numberOfSets);
+
+  // WCM.map((x, index) => { // here x = a[index]
+  //   return WCM_COST[index] * x 
+  // }); 
+
+  // if scaled output numberOsScaled setServers
+  //   else output WCM
+  const lichaam = {
+    work: scaling[0]*numberOfScaledSets + WCM[0],
+    carry: scaling[1]*numberOfScaledSets + WCM[1],
+    move: scaling[2]*numberOfScaledSets + WCM[2],
+  };
+
+  for (let i = 0; i < lichaam.work; i++) {body.push(WORK)}
+  for (let i = 0; i < lichaam.carry; i++) {body.push(MOVE)}
+  for (let i = 0; i < lichaam.move; i++) {body.push(CARRY)}
+  
+  lg('the body is: ' + body)
+  return body
+}

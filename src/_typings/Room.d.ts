@@ -8,6 +8,7 @@ interface RoomMemory {
   rolesInRoom:any;
   jobsInRoom: any;
   constructionSites: ConstructionSite[];
+  droppedEnergy: string | null;
   RCL: number;
   roomEnergyPercentage: number;
 }

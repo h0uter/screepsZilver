@@ -9,6 +9,7 @@ declare namespace NodeJS {
     log: any;
     lg: MyGlobalFunctionType;
     lgO: MyGlobalFunctionType;
+    _lg: MyGlobalFunctionType;
   }
 }
 
@@ -16,3 +17,4 @@ declare namespace NodeJS {
 // declare function lg(name: string): MyGlobalFunctionType;
 declare function lg(text: string): MyGlobalFunctionType;
 declare function lgO(o: object): MyGlobalFunctionType;
+declare function _lg(text: string): MyGlobalFunctionType;

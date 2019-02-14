@@ -1,7 +1,7 @@
 export const populationSetting: KeyNumberObject = {
     engineer: 6,
     harvester: 3,
-    miner: 0,
+    // miner: 1,
   }
 
 
