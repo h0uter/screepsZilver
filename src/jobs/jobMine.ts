@@ -22,7 +22,6 @@ export default function jobMine(creep: Creep): void {
         });
   
         // TODO: let miners build their own container
-        // FIXME: if no container the creep should just go harvest anyway, return a no containers option
         // if no container is found check for the contruction site of a container
         if (containers.length === 0) {
           const containerConstructionSite = source.pos.findInRange(FIND_CONSTRUCTION_SITES, 1, {

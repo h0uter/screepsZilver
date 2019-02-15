@@ -39,4 +39,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
   }
 });
 
-// TODO: make filenames lowercase 
+// TODO: repair job
+// TODO: maintenance job
+// TODO: Transporter job
+// TODO: Storage

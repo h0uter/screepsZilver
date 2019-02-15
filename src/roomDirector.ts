@@ -1,5 +1,7 @@
 import * as Config from "./utils/config"
 
+// TODO: roomDirector job asssignment
+
 export default {
   run(room: Room): void {
     room.updateRoomModel();
@@ -8,16 +10,6 @@ export default {
       const creep = Game.creeps[name];
 
       if (creep.room.name === room.name) {
-        // if (creep.memory.role === 'harvester') {
-        //   roleHarvester.run(creep);
-        // } else if (creep.memory.role === 'engineer') {
-        //   roleEngineer.run(creep);
-        // } else if (creep.memory.role === 'miner') {
-        //   roleMiner.run(creep);
-        // }
-
-        // ['role' + _.capitalize(creep.memory.role)].run(creep)
-
         Config.ROLES[creep.memory.role].run(creep)
 
       }

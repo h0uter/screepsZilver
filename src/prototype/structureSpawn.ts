@@ -50,8 +50,6 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
 //   }, 0);
 // }
 
-// TODO: implement what percentage of roomenergy capacity the spawner should use
-
 // builds a body based on 3 arrays of the format WCM. which parts? should they scale? what is the max # of parts?
 // standard builds a balanced body
 StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1, 1, 1], limit = [5, 5, 5]) {

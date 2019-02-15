@@ -13,6 +13,7 @@ export function run(creep: Creep): void {
         creep.assignJob("jobUpgrade");
       }
     } else {
+      // TODO: create a job getEnergyFromContainer
       creep.assignJob("jobHarvest");
     }
 
