@@ -1,5 +1,3 @@
-import roomDirector from "roomDirector";
-
 Room.prototype.howManyOfEach = function(key: string): object {
   // counts the occurance of the specified key in creep memory per room
   // getJobs en get Population zijn het zelfde
@@ -43,6 +41,6 @@ Room.prototype.updateRoomModel = function() {
     droppedEnergy,
     jobsInRoom: this.howManyOfEach("job"),
     rolesInRoom: this.howManyOfEach("role"),
-    roomEnergyPercentage: _.round(this.energyAvailable / this.energyCapacityAvailable, 2),
+    roomEnergyPercentage: _.round(this.energyAvailable / this.energyCapacityAvailable, 2) * 100,
   };
 };

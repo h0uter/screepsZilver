@@ -1,5 +1,5 @@
 import Tasks from 'creep-tasks'
-import { Jobs }  from '../utils/creepConfig'
+import { JOBS }  from '../utils/config'
 
 Creep.prototype.identifyJob =
   function () {
@@ -59,6 +59,6 @@ Creep.prototype.executeJobLogic = function () {
   // lg('heyyeye'+Roles[this.memory.role][this.memory.job](this));
   if (this.memory.job) {
     // Roles[this.memory.role][this.memory.job](this);
-    Jobs[this.memory.job](this);
+    JOBS[this.memory.job](this);
   }
 };

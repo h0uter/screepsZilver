@@ -3,7 +3,8 @@ export function run(): void {
   for (const roomName in Game.rooms) {
     // ENERGY DATA
     const room = Game.rooms[roomName];
-    console.log('>>Energy in room ' + roomName + ': ' + room.energyAvailable + "/" + room.energyCapacityAvailable);
+    console.log('>>Energy in room ' + roomName + ': ' + room.energyAvailable + "/" + room.energyCapacityAvailable + 
+    ' = '+ room.memory.roomEnergyPercentage + '%');
 
     let roleListLog = '';
     const roleList = Memory.rooms[roomName].rolesInRoom;

@@ -1,12 +1,10 @@
-import { setServers } from "dns";
-
 StructureSpawn.prototype.buildCreep = function (role: string) {
   
   let body: BodyPartConstant[] = [WORK, CARRY, MOVE];
   const newName = _.capitalize(role) + Game.time;
   
 
-  if (this.room.memory.roomEnergyPercentage > 0.7) {
+  if (this.room.memory.roomEnergyPercentage > 70) {
     const spawnEnergy = this.room.energyAvailable;
     body = [];
     const WCM = {
@@ -57,9 +55,9 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
 //   }, 0);
 // }
 
-
+// TODO: implement limit parameter
 // standard builds a balanced body
-StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1, 1, 1]) {
+StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1, 1, 1], limit = [5, 5, 5]) {
   const body: BodyPartConstant[] = []
   const WCM_COST = [100, 50, 50];
 
@@ -98,13 +96,14 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
   //   return WCM_COST[index] * x 
   // }); 
 
-  // if scaled output numberOsScaled setServers
-  //   else output WCM
+  //   number of body parts is the lowest of either 'numberOfScaledSets' or the limit]
   const lichaam = {
-    work: scaling[0]*numberOfScaledSets + WCM[0],
-    carry: scaling[1]*numberOfScaledSets + WCM[1],
-    move: scaling[2]*numberOfScaledSets + WCM[2],
+    work: _.min([scaling[0]*numberOfScaledSets + WCM[0], limit[0]]),
+    carry:  _.min([scaling[1]*numberOfScaledSets + WCM[1], limit[1]]),
+    move:  _.min([scaling[2]*numberOfScaledSets + WCM[2], limit[2]]),
   };
+
+  lgO(lichaam)
 
   for (let i = 0; i < lichaam.work; i++) {body.push(WORK)}
   for (let i = 0; i < lichaam.carry; i++) {body.push(MOVE)}

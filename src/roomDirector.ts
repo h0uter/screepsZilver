@@ -2,7 +2,7 @@ import * as roleEngineer from "./roles/roleEngineer";
 import * as roleHarvester from "./roles/roleHarvester";
 import * as roleMiner from './roles/roleMiner';
 
-import * as Config from "./utils/Config"
+import * as Config from "./utils/config"
 
 export default {
   run(room: Room): void {
@@ -12,13 +12,18 @@ export default {
       const creep = Game.creeps[name];
 
       if (creep.room.name === room.name) {
-        if (creep.memory.role === 'harvester') {
-          roleHarvester.run(creep);
-        } else if (creep.memory.role === 'engineer') {
-          roleEngineer.run(creep);
-        } else if (creep.memory.role === 'miner') {
-          roleMiner.run(creep);
-        }
+        // if (creep.memory.role === 'harvester') {
+        //   roleHarvester.run(creep);
+        // } else if (creep.memory.role === 'engineer') {
+        //   roleEngineer.run(creep);
+        // } else if (creep.memory.role === 'miner') {
+        //   roleMiner.run(creep);
+        // }
+
+        // ['role' + _.capitalize(creep.memory.role)].run(creep)
+
+        Config.ROLES[creep.memory.role].run(creep)
+
       }
     });
 
@@ -26,15 +31,15 @@ export default {
       if (Game.spawns[name].room.name === room.name) {
   
         // DEBUG
-        Game.spawns[name].bodyConstructor([1,0,1],[1,0,0]);
+        Game.spawns[name].bodyConstructor([0,1,1],[0,1,0], [0,3,1]);
         // DEBUG
 
 
-        Object.keys(Config.populationSetting).forEach(role => {
+        Object.keys(Config.POPULATION_SETTINGS).forEach(role => {
           const populationCount = room.memory.rolesInRoom[role] || 0;
           // lg(role + ': ' + populationCount);
 
-          if (populationCount < Config.populationSetting[role]) {
+          if (populationCount < Config.POPULATION_SETTINGS[role]) {
             lg('spawning: ' + role);
             Game.spawns[name].buildCreep(role)
           }

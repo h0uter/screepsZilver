@@ -9,10 +9,10 @@ import './utils/functions';
 
 // TODO: combine into 1 install module
 // import './prototype';
-import './prototype/Creep';
-import './prototype/Room';
+import './prototype/creep';
+import './prototype/room';
 import './prototype/structureSpawn';
-import './prototype/Tower';
+import './prototype/tower';
 
 import { ErrorMapper } from "utils/ErrorMapper";
 import * as logger from "./utils/logger"
@@ -38,3 +38,5 @@ export const loop = ErrorMapper.wrapLoop(() => {
     }
   }
 });
+
+// TODO: make filenames lowercase 
