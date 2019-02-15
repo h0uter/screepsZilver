@@ -1,4 +1,3 @@
-
 export function run(creep: Creep): void {
   if (!!creep.memory.job) {
     creep.executeJobLogic();

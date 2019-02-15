@@ -1,3 +1,5 @@
+import { ROLE_BODY_CONFIG } from 'utils/config'
+
 StructureSpawn.prototype.buildCreep = function (role: string) {
   
   let body: BodyPartConstant[] = [WORK, CARRY, MOVE];
@@ -7,22 +9,15 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
   if (this.room.memory.roomEnergyPercentage > 70) {
     const spawnEnergy = this.room.energyAvailable;
     body = [];
+
     const WCM = {
       balanced: [1, 1, 1],
       miner: [1, 0, 1]
-
     };
 
     const baseCost = {
       balanced: 200
     };
-
-    const bodyBuilder = {
-      balanced () {
-        return [1,1,1].map(x => x * _.floor(spawnEnergy / baseCost.balanced));
-      },
-    };
-    // lg(bodyBuilder.balanced());
 
     const workParts = _.floor(spawnEnergy/baseCost.balanced);
     const carryParts = _.floor(spawnEnergy/baseCost.balanced);
@@ -55,13 +50,16 @@ StructureSpawn.prototype.buildCreep = function (role: string) {
 //   }, 0);
 // }
 
-// TODO: implement limit parameter
+// TODO: implement what percentage of roomenergy capacity the spawner should use
+
+// builds a body based on 3 arrays of the format WCM. which parts? should they scale? what is the max # of parts?
 // standard builds a balanced body
 StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1, 1, 1], limit = [5, 5, 5]) {
   const body: BodyPartConstant[] = []
   const WCM_COST = [100, 50, 50];
 
   const spawnEnergy = this.room.energyAvailable;
+  const spawnEnergyCapacity = this.room.energyCapacityAvailable;
 
   // cost for the base body
   const baseCostMap = WCM.map((x, index) => { // here x = a[index]
@@ -89,12 +87,6 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
   // cost of base body + n scaledSets
   const totalScaledBodyCost = baseCost + numberOfScaledSets * scaledSetCost
   _lg('totalScaledBodyCost= ' + totalScaledBodyCost)
-  // const numberOfSets = _.floor(spawnEnergy/baseCost);
-  // lg('_____numberOfSets= '+ numberOfSets);
-
-  // WCM.map((x, index) => { // here x = a[index]
-  //   return WCM_COST[index] * x 
-  // }); 
 
   //   number of body parts is the lowest of either 'numberOfScaledSets' or the limit]
   const lichaam = {
@@ -106,9 +98,29 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
   lgO(lichaam)
 
   for (let i = 0; i < lichaam.work; i++) {body.push(WORK)}
-  for (let i = 0; i < lichaam.carry; i++) {body.push(MOVE)}
-  for (let i = 0; i < lichaam.move; i++) {body.push(CARRY)}
+  for (let i = 0; i < lichaam.carry; i++) {body.push(CARRY)}
+  for (let i = 0; i < lichaam.move; i++) {body.push(MOVE)}
   
-  lg('the body is: ' + body)
+  lg('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>the body is: ' + body)
   return body
+}
+
+StructureSpawn.prototype.produceCreep = function(role: Role) {
+    
+  const newName = _.capitalize(role) + Game.time;
+  
+  const body: BodyPartConstant[] = this.bodyConstructor(
+    ROLE_BODY_CONFIG[role].WCM, ROLE_BODY_CONFIG[role].scaling, ROLE_BODY_CONFIG[role].limit
+  );
+
+  lg('spawning: ' + newName + ' with body: ' + body)
+  return this.spawnCreep(body, newName, {
+    memory: {
+      full: false,
+      home: this.room.name,
+      role,
+      task: null,
+    }
+  })
+
 }

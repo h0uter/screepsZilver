@@ -22,6 +22,8 @@ export default function jobRestock(creep: Creep): void {
       creep.memory.target = target;
       creep.task = Tasks.transfer(target);
     } else {
+      // FIXME: only executeJobLogic in role file
       creep.assignJob('jobUpgrade')
+      creep.executeJobLogic();
     }
   }

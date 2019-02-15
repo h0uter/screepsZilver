@@ -8,11 +8,11 @@ import jobMine from '../jobs/jobMine';
 import jobRestock from '../jobs/jobRestock'
 import jobUpgrade from '../jobs/jobUpgrade'
 
-export const POPULATION_SETTINGS: KeyNumberObject = {
-    engineer: 6,
-    harvester: 3,
-    // miner: 1,
-  }
+export const POPULATION_SETTINGS: RoleNumberObject = {
+  engineer: 6,
+  harvester: 3,
+  miner: 2,
+}
 
 export const RCL_SPAWN_LIST = {
   1: ['harvester', 'engineer'],
@@ -37,4 +37,22 @@ export const JOBS: keyAnyObject = {
   jobMine,
   jobRestock,
   jobUpgrade,
+}
+
+export const ROLE_BODY_CONFIG = {
+  engineer: {
+    WCM: [1, 1, 1],
+    scaling: [1, 1, 1],
+    limit: [5, 5, 5]
+  },
+  harvester: {
+    WCM: [1, 1, 1],
+    scaling: [1, 1, 1],
+    limit: [5, 5, 5]
+  },
+  miner: {
+    WCM: [1, 0, 1],
+    scaling: [1, 0, 0],
+    limit: [6, 0, 1]
+  }
 }

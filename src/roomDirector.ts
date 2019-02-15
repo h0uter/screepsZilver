@@ -1,7 +1,3 @@
-import * as roleEngineer from "./roles/roleEngineer";
-import * as roleHarvester from "./roles/roleHarvester";
-import * as roleMiner from './roles/roleMiner';
-
 import * as Config from "./utils/config"
 
 export default {
@@ -30,20 +26,22 @@ export default {
     Object.keys(Game.spawns).forEach(name => {
       if (Game.spawns[name].room.name === room.name) {
   
-        // DEBUG
-        Game.spawns[name].bodyConstructor([0,1,1],[0,1,0], [0,3,1]);
-        // DEBUG
+        // // DEBUG
+        // Game.spawns[name].bodyConstructor([5,0,1],[1,0,0], [5,5,5]);
+        // // DEBUG
 
 
         Object.keys(Config.POPULATION_SETTINGS).forEach(role => {
           const populationCount = room.memory.rolesInRoom[role] || 0;
           // lg(role + ': ' + populationCount);
-
+          
           if (populationCount < Config.POPULATION_SETTINGS[role]) {
             lg('spawning: ' + role);
-            Game.spawns[name].buildCreep(role)
+            Game.spawns[name].produceCreep(role as Role)
           }
         })
+
+
       }
     })
   }

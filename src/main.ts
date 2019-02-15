@@ -25,7 +25,7 @@ lg('_____________________Fresh Start____________________________________');
 export const loop = ErrorMapper.wrapLoop(() => {
 
   
-  console.log(`Current game tick is ${Game.time}`);
+  // console.log(`Current game tick is ${Game.time}`);
 
   logger.run();
 

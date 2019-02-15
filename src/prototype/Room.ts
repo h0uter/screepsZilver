@@ -30,7 +30,7 @@ Room.prototype.updateRoomModel = function() {
   } else {
     droppedEnergy = null
   }
-
+  // this.find(FIND_DROPPED_RESOURCES, {})
 
   // TODO: job targets: repair, jobConstruct
   this.memory = {

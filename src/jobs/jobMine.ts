@@ -31,6 +31,11 @@ export default function jobMine(creep: Creep): void {
           if (containerConstructionSite) {
             return containerConstructionSite.id
           } else {
+            lg('No container for: ' + creep.name + ' so Im going to harvest: ' + source)
+            _lg("" + creep.moveTo(source)) 
+            if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+              creep.moveTo(source.pos);
+            }
             return null
           }
           // if there are containers just pick the first one
@@ -39,10 +44,10 @@ export default function jobMine(creep: Creep): void {
           return containers[0].id;
         // otherwise just go harvest the source
         } else {
-          lg('No container for: ' + creep.name) 
-          if(creep.harvest(source) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(source);
-          }
+          // lg('No container for: ' + creep.name) 
+          // if(creep.harvest(source) === ERR_NOT_IN_RANGE) {
+          //   creep.moveTo(source);
+          // }
           return null
         }
       }
