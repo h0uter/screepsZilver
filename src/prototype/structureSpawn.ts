@@ -1,10 +1,10 @@
 import { ROLE_BODY_CONFIG } from 'utils/config'
 
 StructureSpawn.prototype.buildCreep = function (role: string) {
-  
+
   let body: BodyPartConstant[] = [WORK, CARRY, MOVE];
   const newName = _.capitalize(role) + Game.time;
-  
+
 
   if (this.room.memory.roomEnergyPercentage > 70) {
     const spawnEnergy = this.room.energyAvailable;
@@ -61,8 +61,8 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
 
   // cost for the base body
   const baseCostMap = WCM.map((x, index) => { // here x = a[index]
-    return WCM_COST[index] * x 
-  }); 
+    return WCM_COST[index] * x
+  });
   lg('_____baseCostMap= '+ baseCostMap);
 
   const baseCost = baseCostMap.reduce((totalCost, bodypartCost) => totalCost + bodypartCost)
@@ -70,8 +70,8 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
 
   // cost to add a set of the scaling body parts
   const scaleSetCostMap = scaling.map((x, index) => { // here x = a[index]
-    return WCM_COST[index] * x 
-  }); 
+    return WCM_COST[index] * x
+  });
   lg('_____scaleSetCostMap= '+ scaleSetCostMap);
 
   const scaledSetCost = scaleSetCostMap.reduce((totalCost, bodypartCost) => totalCost + bodypartCost)
@@ -98,15 +98,15 @@ StructureSpawn.prototype.bodyConstructor = function (WCM = [1,1,1], scaling = [1
   for (let i = 0; i < lichaam.work; i++) {body.push(WORK)}
   for (let i = 0; i < lichaam.carry; i++) {body.push(CARRY)}
   for (let i = 0; i < lichaam.move; i++) {body.push(MOVE)}
-  
+
   lg('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>the body is: ' + body)
   return body
 }
 
 StructureSpawn.prototype.produceCreep = function(role: Role) {
-    
+
   const newName = _.capitalize(role) + Game.time;
-  
+
   const body: BodyPartConstant[] = this.bodyConstructor(
     ROLE_BODY_CONFIG[role].WCM, ROLE_BODY_CONFIG[role].scaling, ROLE_BODY_CONFIG[role].limit
   );
